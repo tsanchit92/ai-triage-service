@@ -1,0 +1,63 @@
+basePath: /
+definitions:
+  incidents.Incident:
+    properties:
+      affected_service:
+        type: string
+      ai_category:
+        type: string
+      ai_severity:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: API for managing incidents with AI classification
+  title: Incident Management API
+  version: "1.0"
+paths:
+  /incidents/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new incident with AI classification
+      parameters:
+      - description: Incident data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/incidents.Incident'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/incidents.Incident'
+      summary: Create an incident
+      tags:
+      - incidents
+  /incidents/get:
+    get:
+      description: Get a list of all incidents
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/incidents.Incident'
+            type: array
+      summary: List incidents
+      tags:
+      - incidents
+swagger: "2.0"
